@@ -2,6 +2,9 @@ const http = require('http');
 const PORT = 5000;
 const url = require('url');
 const fs = require('fs');
+const events = require('events');
+const eventEmitter = new events.EventEmitter();
+const readStream = fs.createReadStream('./data.txt')
 
 const server = http.createServer((req, res) => {
 
@@ -74,7 +77,39 @@ const server = http.createServer((req, res) => {
     //         }
     //     })
     // }
+
+    //Deleting a file asyncronusly...
+    // if (req.url === '/') {
+    //     fs.unlink('newData.txt', (err) => {
+    //         if (err) {
+    //             res.write('Failed to delete file');
+    //             res.end();
+    //         } else {
+    //             res.write('File deleted successfully');
+    //             res.end();
+    //         }
+    //     })
+    // }
+
+
+    //Creating Event in Node...
+
+    // //Creating event handler...
+    // const myEventHandler = () => {
+    //     console.log('I hear a scream!');
+    // }
+
+    // //Assigning the event handler to an event...
+    // eventEmitter.on('myEvent', myEventHandler).myEventHandler;
+
+    // //Fire the 'myEvent' event...
+    // eventEmitter.emit('myEvent');
+
+
+    
+
 })
+
 
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
